@@ -1,12 +1,11 @@
 
 import './App.css';
+import CurrentWeather from './CurrentWeather';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      
-      </header>
+      <CurrentWeather/>
     </div>
   );
 }
