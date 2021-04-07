@@ -23,25 +23,32 @@ export default function CurrentWeather() {
         }
     }
     
-    
-
+/*     const fetchCall = () => {
+                return fetch(callLink)
+                    .then(res => res.json())
+                    .then(response => setData(response))
+                    .then(console.log(data))
+            } */
+        
     useEffect(() => {
         getLocation()
         
         return fetch(callLink)
-            .then(res => res.json())
-            .then(response => setData(response))
-            .then(console.log(data))
-    }, [])
+                    .then(res => res.json())
+                    .then(response => setData(response))
+                    .then(console.log(data))
+        // fetchCall()
+        
+    }, [callLink])
 
     return (
         <div >
             
-            <h1>Current Weather In {data.location.name}</h1>
+            <h1>Current Weather In {'Location'}</h1>
             {status}
             {lat && <p>Latitude: {lat}</p>}
             {lng && <p>Longitude: {lng}</p>}
-            {data.current.temp_f}
+            {/* {data.current.temp_f} */}
         </div>
     )
 }
