@@ -1,11 +1,13 @@
 import React, { useState, useEffect }from 'react'
+import WeatherContainer from './WeatherContainer'
+
 
 export default function CurrentWeather() {
     const [lat, setLat] = useState(null)
     const [lng, setLng] = useState(null)
     const [status, setStatus] = useState(null)
     const [data, setData] = useState(null)
-    const MARSUPIAL = '26db1c8d52944d17bac192316210404&'
+    const MARSUPIAL = 'fb8b56e1681e560617d805dac216eb96'
     //let callLink = `https://api.weatherapi.com/v1/current.json?key=${MARSUPIAL}q=${lat},${lng}`
 
     const getLocation = () => {
@@ -36,23 +38,27 @@ export default function CurrentWeather() {
     }, [])
 
     useEffect(() => {
-        let callLink = `https://api.weatherapi.com/v1/current.json?key=${MARSUPIAL}q=${lat},${lng}` 
+        console.log(lat)
+        console.log(lng)
+
+        /* let callLink = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${MARSUPIAL}`  */
+        let callLink = `https://api.openweathermap.org/data/2.5/weather?lat=40.8351153&lon=-73.909908399&mode=json&appid=${MARSUPIAL}` 
+
         if (lat && lng) {
             return fetch(callLink)
-        .then((res) => res.json())
-        .then((response) => setData(response));
+                .then((res) => res.json())
+                .then((response) => setData(response));
       // fetchCall()
         }
     }, [lat, lng]);
 
+
+    
     return (
-        <div >
-            
-            <h1>Current Weather In {'Location'}</h1>
-            {status}
-            {lat && <p>Latitude: {lat}</p>}
-            {lng && <p>Longitude: {lng}</p>}
-            {data.current.temp_f}
+        <div>
+            <h1>Current Condition in is this rendering?</h1>
+
+            {data}
         </div>
     )
 }
